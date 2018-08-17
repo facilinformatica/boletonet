@@ -98,6 +98,34 @@ namespace Boleto.Net.Testes.BancoBrasil
             Assert.AreEqual(boletoBancario.Boleto.CodigoBarra.Codigo, codigoBarraValida, "Código de Barra inválido");
         }
 
+        [TestMethod]
+        public void Logo_Cedente()
+        {
+
+            DateTime vencimento = new DateTime(2012, 6, 14);
+
+            var cedente = new Cedente("00.000.000/0000-00", "Empresa Teste", "0131", "7", "00059127", "0");
+
+            BoletoNet.Boleto boleto = new BoletoNet.Boleto(vencimento, 1700, "17-019", "18204", cedente);
+
+            boleto.NumeroDocumento = "18204";
+
+            boleto.Sacado = new Sacado("Rochedao");
+
+            var boletoBancario = new BoletoBancario();
+
+            boletoBancario.CodigoBanco = 1;
+
+            boletoBancario.Boleto = boleto;
+
+            boletoBancario.Cedente.Convenio = 2379661;
+
+            System.IO.File.WriteAllText(
+                @"C:\meuboleto.html",
+                boletoBancario.MontaHtml("", "G:\\Imagens\\10.jpg")
+            );
+        }
+
         #endregion  Carteira 17-019
     }
 }

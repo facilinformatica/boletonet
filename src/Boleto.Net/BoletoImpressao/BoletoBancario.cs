@@ -28,9 +28,7 @@ namespace BoletoNet
     ToolboxBitmap(typeof(BoletoBancario)),
     ToolboxData("<{0}:BoletoBancario Runat=\"server\"></{0}:BoletoBancario>")]
     public class BoletoBancario : Control
-    {
-        string vLocalLogoCedente = string.Empty;
-
+    {       
         #region Variaveis
 
         private Banco _ibanco = null;
@@ -714,8 +712,8 @@ namespace BoletoNet
             if (MostrarContraApresentacaoNaDataVencimento)
                 dataVencimento = "Contra Apresentação";
 
-            if (string.IsNullOrEmpty(vLocalLogoCedente))
-                vLocalLogoCedente = urlImagemLogo;
+            if (string.IsNullOrEmpty(_cedente.Logo))
+                _cedente.Logo = urlImagemLogo;
 
             var valorBoleto = (Boleto.ValorBoleto == 0 ? "" : Boleto.ValorBoleto.ToString("C", CultureInfo.GetCultureInfo("PT-BR")));
 
@@ -725,7 +723,7 @@ namespace BoletoNet
                 //.Replace("@URLIMAGEMCORTE", urlImagemCorte)
                 //.Replace("@URLIMAGEMPONTO", urlImagemPonto)
                 .Replace("@URLIMAGEMLOGO", urlImagemLogo)
-                .Replace("@URLIMGCEDENTE", vLocalLogoCedente)
+                .Replace("@URLIMGCEDENTE", _cedente.Logo)
                 .Replace("@URLIMAGEMBARRA", urlImagemBarra)
                 .Replace("@LINHADIGITAVEL", Boleto.CodigoBarra.LinhaDigitavel)
                 .Replace("@LOCALPAGAMENTO", Boleto.LocalPagamento)
@@ -1078,7 +1076,7 @@ namespace BoletoNet
                 fileName = System.IO.Path.GetTempPath();
 
             if (logoCedente != null)
-                vLocalLogoCedente = logoCedente;
+                _cedente.Logo = logoCedente;
 
             this.OnLoad(EventArgs.Empty);
 

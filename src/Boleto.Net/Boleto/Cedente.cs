@@ -297,6 +297,11 @@ namespace BoletoNet
             }
         }
 
+        public string Logo
+        {
+            get; set;
+        }
+
         public Remessa.TipoAmbiente TipoAmbiente { get; set; }
 
         #endregion Propriedades
