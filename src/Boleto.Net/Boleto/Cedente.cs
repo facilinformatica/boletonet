@@ -23,6 +23,7 @@ namespace BoletoNet
         private Endereco _endereco;
         private IList<IInstrucao> _instrucoes = new List<IInstrucao>();
         private bool _mostrarCNPJnoBoleto = false;
+        private string _logo;
 
         #endregion Variaveis
 
@@ -299,7 +300,14 @@ namespace BoletoNet
 
         public string Logo
         {
-            get; set;
+            get
+            {
+                return _logo;
+            }
+            set
+            {
+                _logo = value;
+            }
         }
 
         public Remessa.TipoAmbiente TipoAmbiente { get; set; }

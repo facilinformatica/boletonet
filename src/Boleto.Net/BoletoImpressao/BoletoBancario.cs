@@ -28,7 +28,7 @@ namespace BoletoNet
     ToolboxBitmap(typeof(BoletoBancario)),
     ToolboxData("<{0}:BoletoBancario Runat=\"server\"></{0}:BoletoBancario>")]
     public class BoletoBancario : Control
-    {       
+    {
         #region Variaveis
 
         private Banco _ibanco = null;
@@ -213,6 +213,12 @@ namespace BoletoNet
             set { ViewState["9"] = value; }
         }
 
+        [Browsable(true), Description("Mostra o CPF/CNPJ do pagadorno recibo de compensação")]
+        public bool MostrarCpfCnpjPagadorReciboCompensacao
+        {
+            get { return Utils.ToBool(ViewState["9"]); }
+            set { ViewState["9"] = value; }
+        }
         #endregion Propriedades
 
         /// <summary> 
@@ -589,18 +595,29 @@ namespace BoletoNet
             }
 
             string sacado = "";
+            string sacadoReciboPagador = "";
+
             string cpfCnpj = string.Empty;
             //Flavio(fhlviana@hotmail.com) - adicionei a possibilidade de o boleto não ter, necessáriamente, que informar o CPF ou CNPJ do sacado.
             //Formata o CPF/CNPJ(se houver) e o Nome do Sacado para apresentação
             if (Sacado.CPFCNPJ == string.Empty)
             {
                 sacado = Sacado.Nome;
+                sacadoReciboPagador = Sacado.Nome;
             }
             else
             {
                 sacado = Sacado.CPFCNPJ.Length <= 11
                     ? string.Format("{0}  CPF: {1}", Sacado.Nome, Utils.FormataCPF(Sacado.CPFCNPJ))
                     : string.Format("{0}  CNPJ: {1}", Sacado.Nome, Utils.FormataCNPJ(Sacado.CPFCNPJ));
+                if (MostrarCpfCnpjPagadorReciboCompensacao)
+                {
+                    sacadoReciboPagador = Sacado.CPFCNPJ.Length <= 11 ? string.Format("{0}  CPF: {1}", Sacado.Nome, Utils.FormataCPF(Sacado.CPFCNPJ)) : string.Format("{0}  CNPJ: {1}", Sacado.Nome, Utils.FormataCNPJ(Sacado.CPFCNPJ));
+                }
+                else
+                {
+                    sacadoReciboPagador = Sacado.Nome;
+                }
             }
 
             if (!string.IsNullOrEmpty(Cedente.CPFCNPJ))
@@ -771,6 +788,7 @@ namespace BoletoNet
                 .Replace("@AGENCIACONTA", agenciaCodigoCedente)
                 .Replace("@SACADO", sacado)
                 .Replace("@INFOSACADO", infoSacado)
+                .Replace("@RECIBOPAGADORSACADO", sacadoReciboPagador)
                 .Replace("@AGENCIACODIGOCEDENTE", agenciaCodigoCedente)
                 .Replace("@CPFCNPJ", Cedente.CPFCNPJ)
                 .Replace(

@@ -19,7 +19,7 @@ namespace BoletoNet {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Html {
@@ -538,7 +538,8 @@ namespace BoletoNet {
         ///								&lt;div class=&quot;t&quot;&gt;(-) Desconto / Abatimentos&lt;/div&gt;
         ///								&lt;div class=&quot;c BB&quot;&gt;@DESCONTOS&lt;/div&gt;
         ///								&lt;div class=&quot;t&quot;&gt;(-) Outras deduções&lt;/div&gt;
-        ///								&lt;div class=&quot;c BB&quot;&gt;@OUTRASDEDUCOES&lt;/div&gt;        /// [rest of string was truncated]&quot;;.
+        ///								&lt;div class=&quot;c BB&quot;&gt;@OUTRASDEDUCOES&lt;/div&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ReciboCedenteParte6 {
             get {
@@ -561,7 +562,7 @@ namespace BoletoNet {
         ///						&lt;td class=&quot;w659&quot;&gt;Pagador&lt;/td&gt;
         ///				&lt;/tr&gt;
         ///				&lt;tr class=&quot;cp h12&quot;&gt;
-        ///						&lt;td class=&quot;At&quot;&gt;@SACADO&lt;/td&gt;
+        ///						&lt;td class=&quot;At&quot;&gt;@RECIBOPAGADORSACADO&lt;/td&gt;
         ///				&lt;/tr&gt;
         ///		&lt;/table&gt;.
         /// </summary>
