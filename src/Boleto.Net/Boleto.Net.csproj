@@ -353,6 +353,7 @@
     <EmbeddedResource Include="Imagens\743.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagens\021.jpg" />
     <Content Include="Imagens\097.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
