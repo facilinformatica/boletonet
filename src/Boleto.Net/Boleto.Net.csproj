@@ -279,7 +279,6 @@
     <EmbeddedResource Include="Imagens\001.jpg" />
     <EmbeddedResource Include="Imagens\004.jpg" />
     <EmbeddedResource Include="Imagens\008.jpg" />
-    <EmbeddedResource Include="Imagens\021.jpg" />
     <EmbeddedResource Include="Imagens\024.jpg" />
     <EmbeddedResource Include="Imagens\027.jpg" />
     <EmbeddedResource Include="Imagens\029.jpg" />
