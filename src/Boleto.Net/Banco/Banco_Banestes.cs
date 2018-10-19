@@ -89,15 +89,33 @@ namespace BoletoNet
         /// <param name="boleto"></param>
         public override void FormataCodigoBarra(Boleto boleto)
         {
+
             try
             {
                 //0219DFFFFVVVVVVVVVVCCCCCCCCCCCCCCCCCCCCCCCCC
 
+
+                var _tipoCobranca = 0;
                 var FFFF = FatorVencimento(boleto);
 
                 var VVVVVVVVVV = _valorMoeda = Utils.FormatCode(boleto.ValorBoleto.ToString("N").Replace(".", "").Replace(",", ""), 10);
 
-                boleto.Banco.ChaveASBACE = GeraChaveASBACE(boleto.Carteira, boleto.Cedente.ContaBancaria.Conta, boleto.NossoNumero, 2);
+
+
+
+                switch (boleto.Carteira)
+                {
+                    case "01": //Desconto
+                    case "11": //Simples
+                    case "13": //Causionada
+                        _tipoCobranca = 4; //Registrada
+                        break;
+                    default:                        
+                        _tipoCobranca = 0; //Sem Registro
+                        break;
+                }
+
+                boleto.Banco.ChaveASBACE = GeraChaveASBACE(boleto.Carteira, boleto.Cedente.ContaBancaria.Conta, boleto.NossoNumero, _tipoCobranca);
 
                 string chave = string.Format("0219{0}{1}{2}", FFFF, VVVVVVVVVV, boleto.Banco.ChaveASBACE);
 
